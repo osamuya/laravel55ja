@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/* Mail authentication */
+Route::post('/regist_confirm', 'Auth\RegisterController@registConfirm');
+Route::post('/regist_store', 'Auth\RegisterController@registStore');
+Route::get('/regist_mail_authenticate_user/{accesshash}', 'Auth\RegisterController@mailAuthenticate');

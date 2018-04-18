@@ -7,3 +7,4 @@
 1. 認証テーブルの作成（オリジナル）
 1. php artisan make:auth ここでデフォルトの認証機能は使えるようになっている
 1. welcome.blade.phpにインデックス作成
+1. ルーティング(Register)
