@@ -8,3 +8,5 @@
 1. php artisan make:auth ここでデフォルトの認証機能は使えるようになっている
 1. welcome.blade.phpにインデックス作成
 1. ルーティング(Register)
+1. コントローラ作成(app/Http/Controllers/Auth/RegisterController.php)
+1. ビュー作成
