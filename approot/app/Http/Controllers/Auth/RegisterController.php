@@ -195,7 +195,7 @@ class RegisterController extends Controller
 		/* No reloading */
 		$request->session()->forget('newRegistStoreFlag');
 		
-		return view("auth.register_stored");
+		return view("auth.register_store");
 	}
 	
 	protected function getUniqeid($salt) {
