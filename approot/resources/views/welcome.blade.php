@@ -50,7 +50,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #000;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -58,10 +58,24 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
+			.links2 {
+				margin-top: 50px;
+			}
+            .links2 > a {
+                color: #000;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
             .m-b-md {
                 margin-bottom: 30px;
             }
+			.list ul li a {
+				color: #000 !important;
+			}
         </style>
     </head>
     <body>
@@ -79,7 +93,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel55ja
                 </div>
 
                 <div class="links">
@@ -89,6 +103,12 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+				
+				<div class="links2">
+					<a href="/register">Register</a>
+					<a href="/login">Login</a>
+					<a href="/login">Login</a>
+				</div>
             </div>
         </div>
     </body>
