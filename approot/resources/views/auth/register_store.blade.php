@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    完了しました。
+                    完了しました。<br>
+					<a href="/">TOP</a>
                 </div>
             </div>
         </div>
