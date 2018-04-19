@@ -119,8 +119,8 @@ class RegisterController extends Controller
 
 		return view("auth.register_confirm")->with($requestData);
 	}
-	
-	
+
+
     /**
      * Store page to new user
      *
@@ -139,7 +139,7 @@ class RegisterController extends Controller
 		$passwordHash = bcrypt($request->session()->get("password"));
 		
 		/* uniqeid */
-		$uniqeid = $this->getUniqeid("hoge");
+		$uniqeid = $this->makeUniqueid("hoge");
 		
 		/* Uniqehash */
 		$uniquehash = substr(hash('sha512',$request->session()->get("password").env("APP_KEY").date("Ymdist")),0,60);
@@ -152,7 +152,7 @@ class RegisterController extends Controller
             'uniqueid' => $uniqeid,
             'uniquehash' => $uniquehash,
             'role' => 1,
-            'status' => 1,
+            'status' => 0,
             'delflag' => 0,
         );
 		$this->create($data);
@@ -198,7 +198,48 @@ class RegisterController extends Controller
 		return view("auth.register_store");
 	}
 	
-	protected function getUniqeid($salt) {
+	
+    /**
+     * Email authenticate to new user
+     *
+     * @param  $accesshash
+     * @return __TBD__
+     */
+	protected function mailAuthenticate($accesshash) {
+		// 現在時間から有効期限を算出
+        // 仮登録から24時間(1日間)有効
+        $dt = Carbon::now();
+        $expirationTime = $dt->addDay(1);
+		
+		/* base_users search & match */
+        $user_id = User::where('delflag', 0)
+            ->where('status', 0)
+            ->where('uniquehash', $accesshash)
+            ->where('created_at','<',$expirationTime)
+            ->value("id");
+		
+//		echo $user_id."<br>";
+//		echo $accesshash."<br>";
+//		echo $expirationTime."<br>";
+		
+		if (!empty($user_id)) {
+            /* Update status */
+            User::where('id', $user_id)
+                ->update([
+                    'status' => 1,
+                ]);
+			return view("auth.register_mailauth");
+		}
+		else
+		{
+			return redirect('/');
+		}
+		
+		return redirect('/');
+	}
+	
+	
+	protected function makeUniqueid($salt) {
 
 		$uniqid = implode("-", str_split(strtoupper(uniqid("00")), 3));
 		$uniqid = "ID-".$uniqid;
