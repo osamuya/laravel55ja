@@ -12,3 +12,8 @@
 1. コントローラ作成(app/Http/Controllers/Auth/RegisterController.php)
 1. ビュー作成
 1. ログイン時の条件変更（statusが1のときログインできるように追加）
+
+
+
+
+## Super user (root)
